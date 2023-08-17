@@ -1,0 +1,53 @@
+{
+    "name": "person-management",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap-cloud-sdk/http-client": "^3.4.0",
+        "@sap-cloud-sdk/resilience": "^3.4.0",
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+        "@sap/xssec": "^3",
+        "express": "^4",
+        "passport": "^0"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/ux-specification": "^1.108.12",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-person-ui": "cds watch --open person-ui/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy person-management --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-person-ui2": "cds watch --open person-ui2/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "requires": {
+            "connectivity": true,
+            "auth": "xsuaa",
+            "db": "hana",
+            "destinations": true,
+            "ZBTP_PERSON_SRV": {
+                "kind": "odata-v2",
+                "model": "srv/external/ZBTP_PERSON_SRV",
+                "csrf": true,
+                "csrfInBatch": true,
+                "credentials": {
+                    "destination": "S22_BA",
+                    "path": "/sap/opu/odata/sap/ZBTP_PERSON_SRV"
+                }
+            }
+        }
+    },
+    "sapux": [
+        "app/person-ui"
+    ]
+}

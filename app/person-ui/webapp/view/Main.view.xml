@@ -1,0 +1,29 @@
+<mvc:View controllerName="personui.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+        <Label id="_IDGenLabel1" text="Adınız:"></Label>
+        <Input id="_IDGenInput1" value=""></Input>
+        <Button id="_IDGenButton1" text="Gönder" press="onKaydet"></Button>
+
+        <Table id="tblPerson" items="{ path : '/Person'}">
+            <columns>
+                <Column>
+                <Label text="Adı" />
+                </Column>
+                <Column>
+                <Label text="Soyadı"/>
+                </Column>
+            </columns>
+             <items>
+                <ColumnListItem>
+                    <Text text="{Vorna}" />
+                    <Text text="{Nachn}" />
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        </content>
+    </Page>
+</mvc:View>

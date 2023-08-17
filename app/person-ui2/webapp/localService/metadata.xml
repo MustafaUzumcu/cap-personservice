@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="PersonManagement" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Person" EntityType="PersonManagement.Person"/>
+            </EntityContainer>
+            <EntityType Name="Person">
+                <Property Name="Pernr" Type="Edm.String" MaxLength="8"/>
+                <Property Name="Bukrs" Type="Edm.String" MaxLength="4"/>
+                <Property Name="Vorna" Type="Edm.String" MaxLength="25"/>
+                <Property Name="Nachn" Type="Edm.String" MaxLength="25"/>
+                <Property Name="Gbdat" Type="Edm.Date"/>
+                <Property Name="Land" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Telnr" Type="Edm.String" MaxLength="14"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
